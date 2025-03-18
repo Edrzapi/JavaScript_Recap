@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSX vs DOM Manipulation</title>
+</head>
+<body>
+  <div id="vat"></div> <!-- This div will be used for DOM manipulation -->
+
+  <!-- React root container -->
+  <div id="root"></div>
+
+  <script>
+    // DOM manipulation
+    function calc() {
+      var newDate = new Date();
+      document.getElementById("vat").innerHTML = "Date: " + newDate.toDateString();
+    }
+
+    // Call calc function once to update the DOM
+    calc(); // This will display the current date inside the "vat" div
+
+    // Example DOM manipulation
+    // Imperative UI: You have to manually select the DOM element (in this case, document.getElementById("vat")) and update its value or content.
+    // Manual DOM updates: Every time you want to update the UI, you have to tell the browser exactly what to change (like setting innerHTML).
+    // No automatic updates: The UI won’t automatically update if the state changes unless you call the function again.
+  </script>
+
+  <!-- React and ReactDOM Scripts -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <script>
+    // JSX (React) code:
+    function Calc() {
+      const newDate = new Date();
+      return <div>Date: {newDate.toDateString()}</div>;
+    }
+
+    // React render call (this would replace the content of the 'root' div)
+    ReactDOM.render(<Calc />, document.getElementById('root'));
+
+    // Declarative UI: You describe what you want the UI to look like (i.e., showing the current date), and React takes care of the rendering.
+    // React manages updates: If the state changes, React efficiently re-renders the component (based on state or props).
+    // No manual DOM manipulation: JSX abstracts away the need to manually manipulate the DOM.
+  </script>
+</body>
+</html>
