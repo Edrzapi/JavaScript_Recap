@@ -1,3 +1,5 @@
+
+
 const myPromise = new Promise((resolve, reject) => {
     const success = true;
 
@@ -14,7 +16,7 @@ myPromise
 
 // Fetch request
 
-fetch('https://jsonplaceholder.typicode.com/posts') // fetch() returns a Promise
+fetch('https://jsonplaceholder.typicode.com/todos/1') // fetch() returns a Promise
     .then(response => response.json())  // Convert response to JSON (also returns a Promise)
     .then(data => console.log(data))     // Log the data when the promise is resolved
     .catch(error => console.log('Error:', error));  // Catch any errors
@@ -23,7 +25,7 @@ fetch('https://jsonplaceholder.typicode.com/posts') // fetch() returns a Promise
 
 async function fetchData() {
     try {
-      const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+      const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
       const data = await response.json();  // Wait for the response to be parsed as JSON
       console.log(data);  // Log the data when the promise is resolved
     } catch (error) {
@@ -33,6 +35,19 @@ async function fetchData() {
   
   fetchData(); // Call the async function
   
+// Axios streamlines the process 
+const axios = require("axios");
+
+
+  axios.get("https://pokeapi.co/api/v2/pokemon")
+    .then(response => {
+      console.log("Data received:", response.data);  // Logs the retrieved data
+    })
+    .catch(error => {
+      console.error("Error fetching data:", error);  // Handles any errors
+    });
+  
+
 
 // Interesting addition -> Promise all:
 
@@ -47,3 +62,5 @@ Promise.all([fetchPost, fetchUser])
     console.log('User:', user);
   })
   .catch(error => console.log('Error:', error));
+
+
